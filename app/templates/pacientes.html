@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/styles/styles.css">
+    <title>Lista Medicos</title>
+</head>
+<body>
+    <section class="tabla container">
+    <nav>
+        <a href="http://127.0.0.1:5000/medicos">Medicos</a>
+        <a href="http://127.0.0.1:5000/pacientes"> Pacientes </a>
+        <a href="http://127.0.0.1:5000/consultorios">Consultorios </a>
+        <a href="http://127.0.0.1:5000/citas">Citas</a>
+    </nav>
+    <h1>Lista De Pacientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>N° Documento</th>
+                <th>Altura</th>
+                <th>Tipo de sangre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in paciente %}
+                <tr>   
+                    <td>{{ paciente.nombres }}</td>
+                    <td>{{ paciente.apellidos }}</td>
+                    <td>{{ paciente.numero_identificacion }}</td>
+                    <td>{{ paciente.altura }}</td>
+                    <td>{{ paciente.tipo_sangre }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+</section>
+</body>
+</html>
