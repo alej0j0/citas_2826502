@@ -27,3 +27,4 @@ from .models import Medico, Paciente, Consultorio, Cita
 ####Ejecutando el objeto ##
 if __name__ == '__main__':
     app.run()
+    

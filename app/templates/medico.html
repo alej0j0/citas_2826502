@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info.Med</title>
+</head>
+<body>
+    <h1>Informacion Del Medico</h1>
+    <ul>
+        <li> Nombre:  {{ med.nombres }}       </li><br>
+        <li> Apellido:  {{ med.apellidos }}       </li><br>
+        <li> Tipo Documento:  {{ med.tipo_identificacion }}       </li><br>
+        <li> N° Documento:  {{ med.numero_identificacion }}       </li><br>
+        <li> Registro Medico:  {{ med.registro_medico }}       </li><br>
+        <li> Especialidad:  {{ med.especialidad }}       </li>
+    </ul>
+    <a href="http://127.0.0.1:5000/medicos">Volver</a>
+</body>
+</html>

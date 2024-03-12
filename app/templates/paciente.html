@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info.Pac</title>
+</head>
+<body>
+    <h1>Informacion Del Paciente</h1>
+    <ul>
+        <li> Nombre:  {{ pac.nombres }}       </li><br>
+        <li> Apellido:  {{ pac.apellidos }}       </li><br>
+        <li> Tipo Documento:  {{ pac.tipo_identificacion }}       </li><br>
+        <li> N° Documento:  {{ pac.numero_identificacion }}       </li><br>
+        <li> Estatura En CM:  {{ pac.altura }}       </li><br>
+        <li> Tipo De Sangre:  {{ pac.tipo_sangre }}       </li>
+    </ul>
+    <a href="http://127.0.0.1:5000/pacientes"> Volver </a>
+</body>
+</html>

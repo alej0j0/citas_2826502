@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario_med</title>
+</head>
+<body>
+    <h1>Nuevo Medico</h1>
+    <form method="POST" action="">
+        <p>Nombre:  <input type="text" Name="nombres"  /> </p>
+        <p>Apellidos:  <input type="text" Name="apellidos"  /> </p>
+        <p>Tipo De Documento:  <select name="cc">
+            <option>CC</option>
+            <option>TI</option>
+            </select>
+        </p>
+        <p>N° Documento:  <input type="text" Name="nd"  /> </p>
+        <p>Registro Medico:  <input type="text" Name="rm"  /> </p>
+        <p> Especialidad: 
+            <select name="es">
+                {% for especialidad in especialidades %}
+                    <option> {{ especialidad }} </option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit">Guardar</button>
+
+
+    </form>
+</body>
+</html>
