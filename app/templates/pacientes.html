@@ -16,15 +16,26 @@
         <a href="http://127.0.0.1:5000/citas">Citas</a>
     </nav>
     <h1>Lista De Pacientes</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+    {% endwith %}
     <table class="table table-success table-striped">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Apellido</th>
+                <th>Tipo De Documento</th>
                 <th>N° Documento</th>
                 <th>Altura</th>
                 <th>Tipo de sangre</th>
                 <th>Ver Detalles</th>
+                <th>Actualizar</th>
             </tr>
         </thead>
         <tbody>
@@ -32,12 +43,18 @@
                 <tr>   
                     <td>{{ paciente.nombres }}</td>
                     <td>{{ paciente.apellidos }}</td>
+                    <td>{{ paciente.tipo_identificacion}}</td>
                     <td>{{ paciente.numero_identificacion }}</td>
                     <td>{{ paciente.altura }}</td>
                     <td>{{ paciente.tipo_sangre }}</td>
                     <td>
                         <a href="/pacientes/{{ paciente.id }}">
                             Ver Detalles
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/pacientes/update/{{ paciente.id }}">
+                            Actualizar
                         </a>
                     </td>
                 </tr>

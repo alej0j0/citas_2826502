@@ -1,6 +1,6 @@
 from . import app, db
 from .models import Medico, Paciente, Consultorio, Cita
-from flask import render_template, request
+from flask import render_template, request, flash, redirect
 
 ##########  
 
@@ -77,7 +77,42 @@ def create_medico():
     ######## añadir a la session sqlalchemy
         db.session.add(new_medico)
         db.session.commit()
-        return 'medico registrado'
+        flash("Medico Registrado Correctamente")
+        return redirect("/medicos")
+    
+@app.route("/medicos/update/<int:id>", methods=["POST" , "GET"])
+def update_medico(id):
+    especialidades = [
+            "Cardiologia", 
+            "Pediatria", 
+            "Oncologia", 
+            "Ginecologia" 
+        ]
+    medico_update = Medico.query.get(id)
+    if(request.method == "GET"):
+        return render_template("medico_update.html", 
+                           medico_update = medico_update,
+                           especialidades = especialidades)
+    elif(request.method == "POST"):
+        ###### Actualizar el medico con los daros del form
+        medico_update.nombres = request.form["nombres"]
+        medico_update.apellidos = request.form["apellidos"]
+        medico_update.tipo_identificacion = request.form["cc"]
+        medico_update.numero_identificacion = request.form["nd"]
+        medico_update.registro_medico = request.form["rm"]
+        medico_update.especialidad = request.form["es"]
+
+        db.session.commit()
+        return "medico actualizado"
+
+@app.route("/medicos/delete/<int:id>")
+def delete_medico(id):
+    medico_delete = Medico.query.get(id)
+    db.session.delete(medico_delete)
+    db.session.commit()
+    return redirect("/medicos")
+
+
 ######## Crear ruta para crear nuevo paciente
     
 @app.route("/pacientes/create" , methods = [ "GET" , "POST"] )
@@ -94,9 +129,30 @@ def create_paciente():
          ######## añadir a la session sqlalchemy
         db.session.add(new_paciente)
         db.session.commit()
-        return 'paciente registrado'
+        flash("Paciente Registrado Correctamente")
+        return redirect("/pacientes")
 
-######## Crear ruta para crear nuevo consultorio
+
+
+@app.route("/pacientes/update/<int:id>", methods=["POST" , "GET"])
+def update_paciente(id):
+    paciente_update = Paciente.query.get(id)
+    if(request.method == "GET"):
+        return render_template("paciente_update.html", 
+                           paciente_update = paciente_update)
+    elif(request.method == "POST"):
+        ###### Actualizar el medico con los daros del form
+        paciente_update.nombres = request.form["nom"]
+        paciente_update.apellidos = request.form["apell"]
+        paciente_update.tipo_identificacion = request.form["doc"]
+        paciente_update.numero_identificacion = request.form["numdoc"]
+        paciente_update.altura = request.form["est"]
+        paciente_update.tipo_sangre = request.form["ts"]
+
+        db.session.commit()
+        return "paciente actualizado"
+
+######## Crear ruta para crear nuevo con    sultorio
 @app.route("/consultorios/create" , methods = [ "GET" , "POST"])
 def create_consultorio():
     if( request.method == "GET" ):
@@ -105,5 +161,6 @@ def create_consultorio():
         new_consultorio = Consultorio(numero = request.form["nc"])
         db.session.add(new_consultorio)
         db.session.commit()
-        return "consultorio registrado"
+        flash("Consultorio Registrado Correctamente")
+        return redirect("/consultorios")
     
